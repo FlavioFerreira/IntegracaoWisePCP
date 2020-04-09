@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,13 +10,24 @@ namespace DAL
 {
     public class ConexaoBD
     {
+        private SqlConnection _conexao;
+        private String _stringConexao;
+
+        public SqlConnection ObjetoConexao
+        {
+            get { return this._conexao; }
+            set { this._conexao = value; }
+        }
+
+        public String StringConexao
+        {
+            get { return this._stringConexao; }
+            set { this._stringConexao = value; }
+        }
+
         NpgsqlConnection conexao = new NpgsqlConnection(); // Estancia da conexao ao postgreSQL
 
-        // Método ConexaoDAL
-        public ConexaoBD()
-        {
-            conexao.ConnectionString = @"Server = servidor; Port = 5432; User Id = postgres; Password = #abc123#; Database = wisepcp_demo;";
-        }
+        
 
         // Médoto Conectar
         public NpgsqlConnection Conectar()
